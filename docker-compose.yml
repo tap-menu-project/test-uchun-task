@@ -33,5 +33,15 @@ services:
     volumes:
       - ./src:/library
   
+  beat:
+    build: .
+    command: celery -A config beat --loglevel=info
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    volumes:
+      - ./src:/library
+  
 volumes:
   pgdata:

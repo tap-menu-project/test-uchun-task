@@ -28,10 +28,10 @@
 - [*] ✅ Tekshiruv: oxirgi nusxani 2 ta parallel so'rov bilan olishga urinish — bittasi 400 olsin
 
 ## 4-blok: Celery (≈1 soat)  
-- [ ] celery.py sozlash, worker docker-compose'da ishlaydi  
-- [ ] send_confirmation_email task (log/print), ijara yaratilganda .delay()  
-- [ ] ✅ Tekshiruv: worker logida xabar ko'rinadi  
-- [ ] Bonus (vaqt qolsa): Beat + muddati o'tganlarni loglash
+- [*] celery.py sozlash, worker docker-compose'da ishlaydi  
+- [*] send_confirmation_email task (log/print), ijara yaratilganda .delay()  
+- [*] ✅ Tekshiruv: worker logida xabar ko'rinadi  
+- [*] Bonus (vaqt qolsa): Beat + muddati o'tganlarni loglash
 
 ## 5-blok: Pardoz va topshirish (≈1 soat)  
 - [ ] README: o'rnatish, docker-compose up, endpoint'lar jadvali + curl misollar  

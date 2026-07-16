@@ -8,6 +8,7 @@ from rest_framework.decorators import action
 from django.db import transaction
 from apps.library.serializers import AuthorSerializer, \
     BookSerializer, BorrowingSerializer
+from apps.library.task import send_borrowing_confirmation, return_borrowing_confirmation
 
 
 class AuthorViewSet(ModelViewSet):
@@ -47,6 +48,7 @@ class BorrowingViewSet(ModelViewSet):
             book.available_copies -= 1
             book.save(update_fields=['available_copies'])
             seralizer.save()
+            send_borrowing_confirmation(seralizer.instance.id)
         
     @action(detail=True, methods=['post'])
     def return_book(self, serializer=None, pk=None):
@@ -59,6 +61,7 @@ class BorrowingViewSet(ModelViewSet):
             borrowing.save(update_fields=['returned_at'])
             book.available_copies += 1
             book.save(update_fields=['available_copies'])
+            return_borrowing_confirmation(borrowing.id)
             return Response(self.get_serializer(borrowing).data,
                             status=status.HTTP_200_OK)
 
