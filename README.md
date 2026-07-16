@@ -8,9 +8,9 @@ berish/qaytarish, band nusxalarni hisobga olish va background xabarnomalar.
 ## Ishga tushirish
 
 1. Repozitoriyni klonlash:
-   ...
+   ```git clone repo-url```
 2. `.env` yaratish (namuna: `.env.example`):
-   ...
+   ```cp .env.example .env```
 3. Ko'tarish:
    docker compose up --build
 4. Migratsiyalar:
@@ -37,7 +37,9 @@ so'rov tanasi + muvaffaqiyatli javob + 400 javob (nusxa qolmaganda)
 
 ## Arxitektura qarorlari
 
-- **PROTECT on_delete:** sababi author o'chib ketsa kitob ham o'chib ketadi, kitob o'chib ketsa borrowings ham o'chib ketadi shunga.
+- **PROTECT on_delete:** sababi author o'chirilayotgan paytda uning books
+borligi tekshiriladi agar bor bo'lsa o'chirishga ruxsatni toxtatadi. borrowing ham shunday agar book o'chib ketsa borrowing ham o'chib ketadi
+va loglar butunlay yo'q bo'ladi.
 - **Race condition:** transaction.atomic + select_for_update; curl bilan
 paralel 2 ta sorov yuborib 1 ta qolgan kitobni olishga urindim. avvaliga transaction.atomic siz 2 marta olindi, kegin himoyani qo'yganimdan kegin 
 birinchi odamga nasib qildi. transaction.atomic aynan shunday jarayonlarda

@@ -51,7 +51,7 @@ class BorrowingViewSet(ModelViewSet):
             send_borrowing_confirmation.delay(seralizer.instance.id)
         
     @action(detail=True, methods=['post'])
-    def return_book(self, serializer=None, pk=None):
+    def return_book(self, request=None, pk=None):
         with transaction.atomic():
             borrowing = self.get_object()
             if borrowing.returned_at is not None:
