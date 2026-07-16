@@ -34,10 +34,10 @@
 - [*] Bonus (vaqt qolsa): Beat + muddati o'tganlarni loglash
 
 ## 5-blok: Pardoz va topshirish (≈1 soat)  
-- [ ] README: o'rnatish, docker-compose up, endpoint'lar jadvali + curl misollar  
-- [ ] Hamma endpoint'ni boshidan qo'lda bir aylanib chiqish  
-- [ ] Kod tozalash: o'lik kod, print'lar, izohsiz joylar  
-- [ ] Oxirgi commit + push
+- [*] README: o'rnatish, docker-compose up, endpoint'lar jadvali + curl misollar  
+- [*] Hamma endpoint'ni boshidan qo'lda bir aylanib chiqish  
+- [*] Kod tozalash: o'lik kod, print'lar, izohsiz joylar  
+- [] Oxirgi commit + push
 
 ## Vaqt qolsa (ixtiyoriy)  
 - [ ] Celery Beat bonus / prod-dev settings / 2-3 ta oddiy test  

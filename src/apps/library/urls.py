@@ -4,8 +4,8 @@ from apps.library.views import AuthorViewSet, BookViewSet, \
     BorrowingViewSet
 
 router = DefaultRouter()
-router.register(r"author", AuthorViewSet, basename="author")
-router.register(r"book", BookViewSet, basename="book")
+router.register(r"authors", AuthorViewSet, basename="author")
+router.register(r"books", BookViewSet, basename="book")
 router.register(r"borrowings", BorrowingViewSet, basename="borrowing")
 
 
