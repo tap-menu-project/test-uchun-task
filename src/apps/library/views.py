@@ -50,7 +50,7 @@ class BorrowingViewSet(ModelViewSet):
             seralizer.save()
             send_borrowing_confirmation.delay(seralizer.instance.id)
         
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['post'], url_path='return')
     def return_book(self, request=None, pk=None):
         with transaction.atomic():
             borrowing = self.get_object()

@@ -28,7 +28,7 @@ API: http://localhost:8000/api/v1/
 | POST | /api/v1/books/ | Kitob qo'shish |
 | GET | /api/v1/books/?author=1 | Muallif bo'yicha filter |
 | POST | /api/v1/borrowings/ | Ijaraga olish |
-| POST | /api/v1/borrowings/{id}/return_book/ | Qaytarish |
+| POST | /api/v1/borrowings/{id}/return/ | Qaytarish |
 | GET | /api/v1/borrowings/?active=true | Faol ijaralar |
 
 ### Namuna: ijara yaratish
