@@ -28,7 +28,7 @@ API: http://localhost:8000/api/v1/
 | POST | /api/v1/books/ | Kitob qo'shish |
 | GET | /api/v1/books/?author=1 | Muallif bo'yicha filter |
 | POST | /api/v1/borrowings/ | Ijaraga olish |
-| POST | /api/v1/borrowings/{id}/return/ | Qaytarish |
+| POST | /api/v1/borrowings/{id}/return_book/ | Qaytarish |
 | GET | /api/v1/borrowings/?active=true | Faol ijaralar |
 
 ### Namuna: ijara yaratish
@@ -37,11 +37,15 @@ so'rov tanasi + muvaffaqiyatli javob + 400 javob (nusxa qolmaganda)
 
 ## Arxitektura qarorlari
 
-- **PROTECT on_delete:** ...(nega — bir jumla)
-- **Race condition:** transaction.atomic + select_for_update; qanday
-  test qilingani (parallel curl) — 2-3 jumla
-- **Celery:** .delay() nima uchun atomic blokdan keyin — 1-2 jumla
-- **Email o'rniga log:** talabdagi ziddiyat va tanlov izohi
+- **PROTECT on_delete:** sababi author o'chib ketsa kitob ham o'chib ketadi, kitob o'chib ketsa borrowings ham o'chib ketadi shunga.
+- **Race condition:** transaction.atomic + select_for_update; curl bilan
+paralel 2 ta sorov yuborib 1 ta qolgan kitobni olishga urindim. avvaliga transaction.atomic siz 2 marta olindi, kegin himoyani qo'yganimdan kegin 
+birinchi odamga nasib qildi. transaction.atomic aynan shunday jarayonlarda
+foydali bo'ladi.
+- **Celery:** .delay() - sababi oddiy unday holatda sinxron bo'lib qolar edi, hozirgi delay() dan kegin esa jarayon muvofavqiyatli yakunlangandan
+kegin yuboriladi.
+- **Email o'rniga log:** sababi bizdagi talabda yuborish so'ralgan ammo
+emailga so'ralmagan va hattoki borrow olgan user ham FK emas oddiy charfield. kelajakda uni email orqali oladigan qilsa bo'ladi.
 - **Beat:** muddati o'tganlarni kunlik loglash, schedule tanlovi
 
 ## Keyingi qadamlar (production uchun)

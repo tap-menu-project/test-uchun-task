@@ -123,7 +123,7 @@ CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://redis:6379/0')
 
 CELERY_BEAT_SCHEDULE = {
     'log-overdue-borrowings-daily': {
-        'task': 'apps.library.task.log_overdue_borrowings',
-        'schedule': 24.0,   # har 24 soatda
+        'task': 'apps.library.tasks.log_overdue_borrowings',
+        'schedule': 60 * 60 * 24,   # har 24 soatda
     },
 }
