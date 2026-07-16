@@ -37,7 +37,7 @@
 - [*] README: o'rnatish, docker-compose up, endpoint'lar jadvali + curl misollar  
 - [*] Hamma endpoint'ni boshidan qo'lda bir aylanib chiqish  
 - [*] Kod tozalash: o'lik kod, print'lar, izohsiz joylar  
-- [] Oxirgi commit + push
+- [*] Oxirgi commit + push
 
 ## Vaqt qolsa (ixtiyoriy)  
-- [ ] Celery Beat bonus / prod-dev settings / 2-3 ta oddiy test  
+- [*] Celery Beat bonus / prod-dev settings / 2-3 ta oddiy test  
