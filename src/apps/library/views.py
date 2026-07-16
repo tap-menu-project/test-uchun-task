@@ -16,8 +16,14 @@ class AuthorViewSet(ModelViewSet):
 
 
 class BookViewSet(ModelViewSet):
-    queryset = Book.objects.select_related('author')
     serializer_class = BookSerializer
+
+    def get_queryset(self):
+        qs = Book.objects.select_related('author')
+        author_id_filter = self.request.query_params.get("author")
+        if author_id_filter and author_id_filter.isnumeric():
+            qs = qs.filter(author__id=author_id_filter)
+        return qs
 
 
 class BorrowingViewSet(ModelViewSet):

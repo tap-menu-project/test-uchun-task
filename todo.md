@@ -12,20 +12,20 @@
 - [*] Author + Book modellari, migration, admin.register  
 - [*] BookSerializer (author nested/ko'rinadigan), AuthorSerializer  
 - [*] BookViewSet + router, queryset'da select_related('author')  ← N+1!  
-- [ ] ?author=<id> filter  
-- [ ] ✅ Tekshiruv: GET/POST /api/books/ Postman'da ishlaydi
+- [*] ?author=<id> filter  
+- [*] ✅ Tekshiruv: GET/POST /api/books/ Postman'da ishlaydi
 
 ## 3-blok: Borrowing zanjiri + BIZNES-QOIDALAR (≈2 soat — eng muhim blok!)  
-- [ ] Borrowing modeli, migration, admin  
-- [ ] POST /api/borrowings/ — yaratish:  
-      - [ ] transaction.atomic + select_for_update(kitob qatoriga)  ← race condition!  
-      - [ ] available_copies == 0 → 400 + xabar  
-      - [ ] muvaffaqiyatda available_copies -= 1  
-- [ ] POST /borrowings/<id>/return/ (custom action):  
-      - [ ] allaqachon qaytarilgan bo'lsa → 400  
-      - [ ] returned_at = now, available_copies += 1 (atomic!)  
-- [ ] ?active=true filter  
-- [ ] ✅ Tekshiruv: oxirgi nusxani 2 ta parallel so'rov bilan olishga urinish — bittasi 400 olsin
+- [*] Borrowing modeli, migration, admin  
+- [*] POST /api/borrowings/ — yaratish:  
+      - [*] transaction.atomic + select_for_update(kitob qatoriga)  ← race condition!  
+      - [*] available_copies == 0 → 400 + xabar  
+      - [*] muvaffaqiyatda available_copies -= 1  
+- [*] POST /borrowings/<id>/return/ (custom action):  
+      - [*] allaqachon qaytarilgan bo'lsa → 400  
+      - [*] returned_at = now, available_copies += 1 (atomic!)  
+- [*] ?active=true filter  
+- [*] ✅ Tekshiruv: oxirgi nusxani 2 ta parallel so'rov bilan olishga urinish — bittasi 400 olsin
 
 ## 4-blok: Celery (≈1 soat)  
 - [ ] celery.py sozlash, worker docker-compose'da ishlaydi  
