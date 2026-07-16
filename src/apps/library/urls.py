@@ -6,7 +6,7 @@ from apps.library.views import AuthorViewSet, BookViewSet, \
 router = DefaultRouter()
 router.register(r"author", AuthorViewSet, basename="author")
 router.register(r"book", BookViewSet, basename="book")
-router.register(r"borrowing", BorrowingViewSet, basename="borrowing")
+router.register(r"borrowings", BorrowingViewSet, basename="borrowing")
 
 
 urlpatterns = [
