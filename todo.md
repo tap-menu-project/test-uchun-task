@@ -8,10 +8,10 @@
 - [*] ✅ Tekshiruv: `docker-compose up` → Django sahifasi ochiladi, db ulandi
 
 ## 2-blok: Book zanjiri (≈1 soat)  
-- [ ] Draw.io: 3 model sxemasi (10 daqiqadan oshmasin!)  
-- [ ] Author + Book modellari, migration, admin.register  
-- [ ] BookSerializer (author nested/ko'rinadigan), AuthorSerializer  
-- [ ] BookViewSet + router, queryset'da select_related('author')  ← N+1!  
+- [*] Draw.io: 3 model sxemasi (10 daqiqadan oshmasin!)  
+- [*] Author + Book modellari, migration, admin.register  
+- [*] BookSerializer (author nested/ko'rinadigan), AuthorSerializer  
+- [*] BookViewSet + router, queryset'da select_related('author')  ← N+1!  
 - [ ] ?author=<id> filter  
 - [ ] ✅ Tekshiruv: GET/POST /api/books/ Postman'da ishlaydi
 
