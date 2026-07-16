@@ -36,10 +36,10 @@ class BorrowingViewSet(ModelViewSet):
             qs = qs.filter(returned_at__isnull=True)
         return qs
 
-    def perform_create(self, seralizer):
+    def perform_create(self, serializer):
         with transaction.atomic():
             book = Book.objects.select_for_update().get(
-                pk=seralizer.validated_data['book'].pk
+                pk=serializer.validated_data['book'].pk
             )
             if book.available_copies <= 0:
                 raise ValidationError(
@@ -47,8 +47,11 @@ class BorrowingViewSet(ModelViewSet):
                 )
             book.available_copies -= 1
             book.save(update_fields=['available_copies'])
-            seralizer.save()
-            send_borrowing_confirmation.delay(seralizer.instance.id)
+            serializer.save()
+            borrowing_id = serializer.instance.id
+            transaction.on_commit(
+                lambda: send_borrowing_confirmation.delay(borrowing_id)
+            )
         
     @action(detail=True, methods=['post'], url_path='return')
     def return_book(self, request=None, pk=None):
@@ -61,7 +64,9 @@ class BorrowingViewSet(ModelViewSet):
             borrowing.save(update_fields=['returned_at'])
             book.available_copies += 1
             book.save(update_fields=['available_copies'])
-            return_borrowing_confirmation.delay(borrowing.id)
+            transaction.on_commit(
+                lambda: return_borrowing_confirmation.delay(borrowing.id)
+            )
             return Response(self.get_serializer(borrowing).data,
                             status=status.HTTP_200_OK)
 

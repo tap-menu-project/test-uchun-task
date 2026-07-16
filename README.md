@@ -8,9 +8,12 @@ berish/qaytarish, band nusxalarni hisobga olish va background xabarnomalar.
 ## Ishga tushirish
 
 1. Repozitoriyni klonlash:
-   ```git clone repo-url```
+   git clone https://github.com/tap-menu-project/test-uchun-task.git
+   cd test-uchun-task
+
 2. `.env` yaratish (namuna: `.env.example`):
-   ```cp .env.example .env```
+   cp .env.example .env
+
 3. Ko'tarish:
    docker compose up --build
 4. Migratsiyalar:
@@ -32,9 +35,34 @@ API: http://localhost:8000/api/v1/
 | GET | /api/v1/borrowings/?active=true | Faol ijaralar |
 
 ### Namuna: ijara yaratish
-so'rov tanasi + muvaffaqiyatli javob + 400 javob (nusxa qolmaganda)
-— Postman'dagi REAL natijalaringizdan ko'chiring
+### Namuna: ijara yaratish
 
+So'rov:
+```
+POST /api/v1/borrowings/
+{
+  "book_id": 1,
+  "borrower_name": "Ali Umidjonov",
+  "due_date": "2026-08-01"
+}
+```
+
+Muvaffaqiyatli javob — 201:
+```
+{
+  "id": 5,
+  "book": { "id": 1, "title": "O'tgan kunlar", "author": {...}, "available_copies": 0, ... },
+  "borrower_name": "Ali Umidjonov",
+  "borrowed_at": "2026-07-16T15:20:11Z",
+  "due_date": "2026-08-01",
+  "returned_at": null
+}
+```
+
+Nusxa qolmaganda — 400:
+```
+{ "book_id": "No available copies for this book." }
+```
 ## Arxitektura qarorlari
 
 - **PROTECT on_delete:** sababi author o'chirilayotgan paytda uning books
